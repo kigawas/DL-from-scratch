@@ -43,10 +43,8 @@ class Perceptron(object):
         >>> p.predict(np.array([[1, 2], [3, 4]]))
         Traceback (most recent call last):
             ...
-        NotImplementedError: Please call `fit` first
+        AttributeError: 'Perceptron' object has no attribute 'w'
         '''
-        if not hasattr(self, 'w'):
-            raise NotImplementedError('Please call `fit` first')
         X = self.add_one(X)
         return self.f(X.dot(self.w))
 
