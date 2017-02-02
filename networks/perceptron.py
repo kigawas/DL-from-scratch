@@ -7,7 +7,7 @@ import numpy as np
 class Perceptron(object):
     '''
     Perceptron implemented with the classic PLA
-    >>> from common.functions import step
+    >>> from common.function import step
     >>> p = Perceptron(f=step)
     >>> X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     >>> and_y = np.array([0, 0, 0, 1])

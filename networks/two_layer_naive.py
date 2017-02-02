@@ -3,7 +3,7 @@ os.sys.path.extend([os.pardir, os.curdir])
 
 import numpy as np
 
-from common.functions import cross_entropy, sigmoid, softmax
+from common.function import cross_entropy, sigmoid, softmax
 from common.gradient import numerical_grad
 
 

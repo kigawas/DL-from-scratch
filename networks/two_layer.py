@@ -6,12 +6,12 @@ from collections import OrderedDict
 import numpy as np
 
 from common.gradient import numerical_grad
-from common.layers import Affine, SoftmaxWithLoss, Relu
+from common.layer import Affine, SoftmaxWithLoss, Relu
 
 
 class TwoLayer(object):
     '''
-    >>> from common.functions import softmax
+    >>> from common.function import softmax
     >>> n = TwoLayer(2, 10, 3)
     >>> output = softmax(n.predict(np.array([[1, 2]])))
     >>> abs(np.sum(output) - 1.0) < 0.0001

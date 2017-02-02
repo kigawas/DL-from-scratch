@@ -3,7 +3,7 @@ os.sys.path.extend([os.pardir, os.curdir])
 
 import numpy as np
 
-from common.functions import softmax, cross_entropy
+from common.function import softmax, cross_entropy
 
 
 class Layer(object):

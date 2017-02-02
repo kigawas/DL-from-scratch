@@ -52,9 +52,13 @@ def softmax(x):
     >>> res = softmax(np.array([[0, 200, 10], [0, 10, 200], [200, 0, 10]]))
     >>> np.sum(res, axis=1)
     array([ 1.,  1.,  1.])
+    >>> np.all(res > 0)
+    True
     >>> res = softmax(np.array([[0, 200, 10], [0, 10, 200]]))
     >>> np.sum(res, axis=1)
     array([ 1.,  1.])
+    >>> np.all(res > 0)
+    True
     '''
     assert x.ndim <= 2
     if x.ndim == 1:
@@ -64,13 +68,13 @@ def softmax(x):
     return exp_x / np.sum(exp_x, axis=1).reshape((-1, 1))
 
 
-def cross_entropy(y, t):
+def cross_entropy(y, t, eps=1e-15):
     '''
     Batch cross entropy
     >>> t = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
     >>> y = [0.1, 0.05, 0.6, 0.0, 0.05, 0.1, 0.0, 0.1, 0.0, 0.0]
     >>> cn1 = cross_entropy(np.array(y), np.array(t))
-    >>> t = [[0, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+    >>> t = [2, 9]
     >>> y = [[0.1, 0.05, 0.6, 0.0, 0.05, 0.1, 0.0, 0.1, 0.0, 0.0], [0.1, 0.05, 0.0, 0.0, 0.05, 0.1, 0.0, 0.1, 0.0, 0.6]]
     >>> cn2 = cross_entropy(np.array(y), np.array(t))
     >>> abs(cn1 - cn2) < 0.0001
@@ -83,7 +87,9 @@ def cross_entropy(y, t):
         t = np.argmax(t, axis=1)
 
     batch = y.shape[0]
-    return -np.sum(np.log(y[np.arange(batch), t])) / batch
+    p = y[np.arange(batch), t]
+    p[p == 0] = eps
+    return -np.sum(np.log(p)) / batch
 
 
 if __name__ == '__main__':
