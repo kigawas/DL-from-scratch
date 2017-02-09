@@ -42,6 +42,7 @@ class Momentum(Optimizer):
 class Nesterov(Momentum):
     '''
     A variant of Momentum
+    Reference: https://arxiv.org/pdf/1212.0901v2.pdf
     '''
 
     def update(self, params, grads):
